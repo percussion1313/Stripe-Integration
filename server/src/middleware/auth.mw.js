@@ -5,6 +5,7 @@ function tokenMiddleware(req, res, next) {
 }
 
 function isLoggedIn(req, res, next) {
+    console.log('logged in')
     if (req.user) {
         next();
     } else {

@@ -7,6 +7,7 @@ import { encode, decode } from '../utils/tokens';
 let usersTable = new Table('users');
 let tokensTable = new Table('tokens');
 
+
 function configurePassport(app) {
     passport.use(new LocalStrategy({
         usernameField: 'email',
@@ -14,10 +15,9 @@ function configurePassport(app) {
         session: false,
     }, async (email, password, done) => {
         try {
-            console.log('test');
             // array destructuring. find() will return an array of results.
             // destructuring the first (and hopefully only) result into the user variable
-            let user = await usersTable.find({ email })[0];
+            let [user] = await usersTable.find({ email });
             if (user && user.password && user.password === password) {
                 let idObj = await tokensTable.insert({
                     userid: user.id
@@ -35,7 +35,6 @@ function configurePassport(app) {
     passport.use(new BearerStrategy(async (token, done) => {
         let tokenId = decode(token);
         if (!tokenId) {
-            console.log(`${token.id}`)
             return done(null, false, { message: 'Invalid token' });
         }
         try {

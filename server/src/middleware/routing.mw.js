@@ -9,6 +9,7 @@ function stateRouting(req, res, next) {
 }
 
 function isServerAsset(path) {
+    console.log('routingpage')
     // ex: /images/tree.png, then pieces is ['', 'images', 'tree.png']
     let pieces = path.split('/');
     if (pieces.length === 0) {

@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import authRouter from './auth';
 import blogsRouter from './blogs';
-import usersRouter from './users';
 import { isLoggedIn, tokenMiddleware } from '../middleware/auth.mw';
 
 let router = Router();
@@ -14,7 +13,6 @@ router.route('*')
     // .delete(tokenMiddleware, isLoggedIn);
 
 router.use('/blogs', blogsRouter);
-router.use('/users', usersRouter);
 
 
 export default router;
