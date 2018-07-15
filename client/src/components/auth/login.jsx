@@ -63,11 +63,11 @@ class Login extends Component {
            <Fragment>
                 <p>You must be logged in to view this page.</p>
                 <form onSubmit={(e) => this.login(e)}>
-                    <div className="form-group">
+                    <div className="form-group col-md-6 d-flex mx-auto">
                         <label htmlFor="email">Email</label>
                         <input id="email" className="form-control" type="email" onChange={(e) => this.handleEmailChange(e.target.value)} required /> 
                     </div>
-                    <div className="form-group">
+                    <div className="form-group col-md-6 d-flex mx-auto">
                         <label htmlFor="password">Password</label>
                         <input id="password" className="form-control" type="password" onChange={(e) => this.handlePasswordChange(e.target.value)} required /> 
                     </div>

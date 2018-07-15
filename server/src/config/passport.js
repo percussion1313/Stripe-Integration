@@ -20,7 +20,7 @@ function configurePassport(app) {
             let [user] = await usersTable.find({ email });
             if (user && user.password && user.password === password) {
                 let idObj = await tokensTable.insert({
-                    userid: user.id
+                    usersid: user.id
                 });
                 let token = encode(idObj.id);
                 return done(null, { token });

@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import * as classService from '../services/classes';
+import * as blogsService from '../services/blogs';
 
 class GoodbyeWorld extends Component {
     
     constructor(props) {
         super(props);
+
     }
 
     componentDidMount() {
-        classService.all()
+        blogsService.all()
         .then(console.log);
     }
 
