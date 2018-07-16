@@ -40,7 +40,7 @@ function json(url, method = 'GET', payload = {}) {
             'Authorization': authToken
         })
     };
-
+    console.log(data);
     if (method === 'GET') {
         delete data.body;
     }

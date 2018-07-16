@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-// import * as blogService from '../../services/blogs';
+import * as blogService from '../../services/blogs';
 
-let blogAPI = '/api/blogs/'
+
 class SingleBlog extends Component {
 
     constructor(props) {
@@ -12,17 +12,15 @@ class SingleBlog extends Component {
         }
     }
 
-    
+
     componentDidMount() {
-        let url = blogAPI + this.props.match.params.id;
-        fetch(url, {
-        method: 'GET'
-        })
-            .then(res => res.json())
-            .then((data) => this.setState({ blogs: data }))
-            .catch((e) => {
-                console.log(e)
-            })
+        let url = '/api/blogs/' + this.props.match.params.id;
+        console.log(url)
+        blogService.one(this.props.match.params.id)
+            .then((res) => this.setState({
+                blogs: res
+
+            }))
     }
 
     render() {

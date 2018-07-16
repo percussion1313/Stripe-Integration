@@ -25,10 +25,10 @@ class Navigation extends Component {
                         <Route exact path="/" component={Home} />
                         <Route path="/login" component={Login} />
                         <Route path="/logout" component={Logout} />
+                        <PrivateRoute path="/blogs/:id" component={SingleBlog} />
                         <Route path="/blogs" component={BlogList}/>
                         <PrivateRoute path="/admin" component={AdminBlogList} />
                         <PrivateRoute path="/addpost" component={AddPost} />
-                        <PrivateRoute path="/blogs/:id" component={SingleBlog} />
                     </Switch>
                 </Fragment>
             </Router>

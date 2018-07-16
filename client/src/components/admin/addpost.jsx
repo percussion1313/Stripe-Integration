@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import * as blogService from '../../services/blogs';
 
 
 
@@ -9,29 +10,27 @@ class AddPost extends Component {
         super(props)
 
         this.state = {
-            title: '',
-            content: ''
+            title: "",
+            content: ""
         }
-
-        this.handleTitleChange = this.handleTitleChange.bind(this);
-        this.handleContentChange = this.handleContentChange.bind(this);
-        this.addPost = this.addPost.bind(this);
     }
 
     addPost() {
         let blogPost = {
             title: this.state.title,
-            content: this.state.content,
+            content: this.state.content
         };
         console.log(blogPost)
-        fetch('/api/blogs', {
-            method: 'POST',
-            body: JSON.stringify(blogPost),
-            headers: new Headers({ 
-                'Content-Type': 'application/json',
-            })
-        }).then(response => response.json())
-            .catch(error => console.log(error))
+        //Using back end functions provided in service/blogs.js
+        blogService.insert(blogPost)
+        // fetch('/api/blogs', {
+        //     method: 'POST',
+        //     body: JSON.stringify(blogPost),
+        //     headers: new Headers ({ 
+        //         'Content-Type': 'application/json'
+        //     })
+        // }).then(response => response.json())
+        //     .catch(error => console.log(error))
     }
 
 
@@ -53,17 +52,17 @@ class AddPost extends Component {
                 <form>
                     <div className="col-md-6 form-text rounded-0">
                         <input placeholder="Blog Title Goes Here"
-                        type="text" id="title" name="title"
-                            onChange={this.handleTitleChange} />
+                            type="text" id="title" name="title"
+                            onChange={this.handleTitleChange.bind(this)} />
                     </div>
                     <textarea className="form-control col-md-6 pagination-centered m-3 position-relative shadow mx-auto"
-                    id="content" name="content" type="text"
-                        onChange={this.handleContentChange} ></textarea>
+                        id="content" name="content" type="text"
+                        onChange={this.handleContentChange.bind(this)} ></textarea>
                     <div>
                         <button
                             className="btn btn-primary m-3 d-flex mx-auto shadow"
                             name="cardSubmitButton"
-                            onClick={this.addPost}
+                            onClick={this.addPost.bind(this)}
                         >Post!</button>
                     </div>
                 </form>
