@@ -12,7 +12,7 @@ class SingleBlog extends Component {
         }
     }
 
-
+    
     componentDidMount() {
         let url = blogAPI + this.props.match.params.id;
         fetch(url, {

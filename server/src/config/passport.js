@@ -39,7 +39,7 @@ function configurePassport(app) {
         }
         try {
             let tokenRecord = await tokensTable.getOne(tokenId);
-            let user = await usersTable.getOne(tokenRecord.userid);
+            let user = await usersTable.getOne(tokenRecord.usersid);
             if (user) {
                 delete user.password;
                 return done(null, user);
