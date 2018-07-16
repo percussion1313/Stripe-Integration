@@ -4,9 +4,8 @@ import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import Table from '../table';
 import { encode, decode } from '../utils/tokens';
 
-let usersTable = new Table('users');
-let tokensTable = new Table('tokens');
-
+let usersTable = new Table('Users');
+let tokensTable = new Table('Tokens');
 
 function configurePassport(app) {
     passport.use(new LocalStrategy({
@@ -20,9 +19,9 @@ function configurePassport(app) {
             let [user] = await usersTable.find({ email });
             if (user && user.password && user.password === password) {
                 let idObj = await tokensTable.insert({
-                    usersid: user.id
+                    userid: user.id
                 });
-                let token = encode(idObj.id);
+                let token = encode(idObj.id); 
                 return done(null, { token });
             } else {
                 return done(null, false, { message: 'Invalid credentials' });
@@ -39,10 +38,10 @@ function configurePassport(app) {
         }
         try {
             let tokenRecord = await tokensTable.getOne(tokenId);
-            let user = await usersTable.getOne(tokenRecord.usersid);
+            let user = await usersTable.getOne(tokenRecord.userid);
             if (user) {
-                delete user.password;
-                return done(null, user);
+                delete user.password; //removes pw from user object on server
+                return done(null, user);// after this, req.user is SET
             } else {
                 return done(null, false, { message: 'Invalid token' });
             }

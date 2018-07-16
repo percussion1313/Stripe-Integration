@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './home';
 import GoodbyeWorld from './goodbye';
 import AdminBlogList from './admin/adminhome';
-import AddPost from './admin/addpost';
 import SingleBlog from './admin/singleblog';
 import BlogList from './bloglist';
 import PrivateRoute from './auth/privateRoute';
@@ -29,7 +28,6 @@ class Navigation extends Component {
                         <Route path="/logout" component={Logout} />
                         <Route path="/blogs" component={BlogList}/>
                         <PrivateRoute path="/admin" component={AdminBlogList} />
-                        <PrivateRoute path="/addpost" component={AddPost}/>
                         <PrivateRoute path="/blogs/:id" component={SingleBlog} />
                         <PrivateRoute path="/goodbye" component={GoodbyeWorld} />
                     </Switch>

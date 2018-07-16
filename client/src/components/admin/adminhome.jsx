@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AdminBlog from './adminblogtemplate'
 import { Link } from 'react-router-dom'
-import * as blogService from '../../services/blogs';
+import Addpost from './addpost'
 
 let blogDatabase = '/api/blogs'
 
@@ -32,7 +32,7 @@ class AdminBlogList extends Component {
         )
         return (
             <React.Fragment>
-                 <Link to="/addpost"><button className="btn btn-primary d-flex mx-auto">Add Post</button></Link>
+                 <Addpost />
                 {blogPosts}
             </React.Fragment>
         )

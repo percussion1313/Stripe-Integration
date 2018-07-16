@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import * as blogService from '../../services/blogs';
+import { setAuthToken } from '../../services/base';
 
 //Part of admin page 
 class AddPost extends Component {
@@ -13,25 +13,23 @@ class AddPost extends Component {
         }
     }
 
-    componentDidMount() {
-        blogService.insert()
-        .then(console.log)
-    }
-
     addPost() {
-        var blogDatabase = '/api/blogs';
-        var data = {
+        let data = {
             title: this.state.title,
             content: this.state.content,
         };
-        fetch(blogDatabase, {
+        fetch('/api/blogs', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers: new Headers({ 'Content-Type': 'application/json'})
+            headers: new Headers({ 
+                'Content-Type': 'application/json',
+                'Authorization': setAuthToken()
+            })
         }).then(res => res.json())
-            .catch(error => console.error('Error:', error));
+            .catch(error => console.log(error))
     }
-    
+
+
     handleTitleChange(event) {
         this.setState({
             title: event.target.value
@@ -47,7 +45,7 @@ class AddPost extends Component {
 
         return (
             <React.Fragment>
-                <form>
+                <form onSubmit={this.insertAuth}>
                     <div className="col-md-6 form-text rounded-0">
                         <input placeholder="Blog Title Goes Here"
                             onChange={this.handleTitleChange.bind(this)} />
