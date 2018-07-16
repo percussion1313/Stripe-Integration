@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+// import * as blogService from '../../services/blogs';
 
 let blogAPI = '/api/blogs/'
 class SingleBlog extends Component {

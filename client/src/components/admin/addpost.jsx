@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import * as blogService from '../../services/blogs';
+// import * as blogService from '../../services/blogs';
 
 //Part of admin page 
 class AddPost extends Component {
@@ -11,11 +11,6 @@ class AddPost extends Component {
             title: '',
             content: ''
         }
-    }
-
-    componentDidMount() {
-        blogService.insert()
-            .then(console.log);
     }
     
     addPost() {
