@@ -6,6 +6,7 @@ const PrivateRoute = (props) => {
     const Component = props.component;
     const propsToPass = Object.assign({}, props);
     delete propsToPass.component;
+    console.log('privateroute')
 
     return (
         <Route {...propsToPass} render={props => (
@@ -16,9 +17,13 @@ const PrivateRoute = (props) => {
                     pathname: '/login',
                     state: { from: props.location }
                 }} />
+                
             )
+            
         )} />
+        
     );
+    
 };
 
 export default PrivateRoute;

@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import classesRouter from './classes';
 import authRouter from './auth';
 import usersRouter from './users';
 import blogsRouter from './blogs';
@@ -13,7 +12,6 @@ router.route('*')
     .put(tokenMiddleware, isLoggedIn)
     .delete(tokenMiddleware, isLoggedIn);
 
-router.use('/classes', classesRouter);
 router.use('/blogs', blogsRouter);
 router.use('/users', usersRouter);
 

@@ -19,6 +19,7 @@ class Logout extends Component {
 
     render() {
         if (this.state.loggedOut) {
+            console.log('loggedoutpage')
             return <Redirect to="/" />;
         } else {
             return <IndeterminateProgress message="Logging Out..." />

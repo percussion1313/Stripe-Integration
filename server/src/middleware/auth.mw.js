@@ -9,6 +9,7 @@ function isLoggedIn(req, res, next) {
     if (req.user) {
         next();
     } else {
+        console.log('this is a dumb error')
         res.sendStatus(401);
     }
 }

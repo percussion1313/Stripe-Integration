@@ -4,8 +4,8 @@ import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import Table from '../table';
 import { encode, decode } from '../utils/tokens';
 
-let usersTable = new Table('Users');
-let tokensTable = new Table('Tokens');
+let usersTable = new Table('users');
+let tokensTable = new Table('tokens');
 
 function configurePassport(app) {
     passport.use(new LocalStrategy({
@@ -14,6 +14,7 @@ function configurePassport(app) {
         session: false,
     }, async (email, password, done) => {
         try {
+            console.log('localstrategy')
             // array destructuring. find() will return an array of results.
             // destructuring the first (and hopefully only) result into the user variable
             let [user] = await usersTable.find({ email });
@@ -32,6 +33,7 @@ function configurePassport(app) {
     }));
 
     passport.use(new BearerStrategy(async (token, done) => {
+        console.log('bearerstrategy')
         let tokenId = decode(token);
         if (!tokenId) {
             return done(null, false, { message: 'Invalid token' });

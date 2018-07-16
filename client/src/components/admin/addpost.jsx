@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { setAuthToken } from '../../services/base';
+import { token } from '../../services/base';
+
 
 //Part of admin page 
 class AddPost extends Component {
@@ -23,7 +24,6 @@ class AddPost extends Component {
             body: JSON.stringify(data),
             headers: new Headers({ 
                 'Content-Type': 'application/json',
-                'Authorization': setAuthToken()
             })
         }).then(res => res.json())
             .catch(error => console.log(error))
