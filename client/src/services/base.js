@@ -16,7 +16,6 @@ function clearAuthToken() {
     if (localStorage) {
         localStorage.removeItem(AUTH_TOKEN_KEY);
     }
-    console.log('clearauth')
 }
 
 function populateAuthToken() {
@@ -25,12 +24,10 @@ function populateAuthToken() {
         if (token && token !== null) {
             authToken = token;
         }
-        console.log('popauth')
     }
 }
 
 function makeFetch(url, info) {
-    console.log('makefetch')
     return fetch(url, info);
 }
 
@@ -43,7 +40,6 @@ function json(url, method = 'GET', payload = {}) {
             'Authorization': authToken
         })
     };
-    console.log(data)
 
     if (method === 'GET') {
         delete data.body;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { token } from '../../services/base';
+
 
 
 //Part of admin page 
@@ -12,20 +12,25 @@ class AddPost extends Component {
             title: '',
             content: ''
         }
+
+        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleContentChange = this.handleContentChange.bind(this);
+        this.addPost = this.addPost.bind(this);
     }
 
     addPost() {
-        let data = {
+        let blogPost = {
             title: this.state.title,
             content: this.state.content,
         };
+        console.log(blogPost)
         fetch('/api/blogs', {
             method: 'POST',
-            body: JSON.stringify(data),
+            body: JSON.stringify(blogPost),
             headers: new Headers({ 
                 'Content-Type': 'application/json',
             })
-        }).then(res => res.json())
+        }).then(response => response.json())
             .catch(error => console.log(error))
     }
 
@@ -45,18 +50,20 @@ class AddPost extends Component {
 
         return (
             <React.Fragment>
-                <form onSubmit={this.insertAuth}>
+                <form>
                     <div className="col-md-6 form-text rounded-0">
                         <input placeholder="Blog Title Goes Here"
-                            onChange={this.handleTitleChange.bind(this)} />
+                        type="text" id="title" name="title"
+                            onChange={this.handleTitleChange} />
                     </div>
                     <textarea className="form-control col-md-6 pagination-centered m-3 position-relative shadow mx-auto"
-                        onChange={this.handleContentChange.bind(this)} ></textarea>
+                    id="content" name="content" type="text"
+                        onChange={this.handleContentChange} ></textarea>
                     <div>
                         <button
                             className="btn btn-primary m-3 d-flex mx-auto shadow"
                             name="cardSubmitButton"
-                            onClick={this.addPost.bind(this)}
+                            onClick={this.addPost}
                         >Post!</button>
                     </div>
                 </form>

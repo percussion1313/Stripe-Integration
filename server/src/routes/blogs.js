@@ -16,8 +16,9 @@ router.get('/', async(req, res) => {
     res.json(blog);
  });
 
- router.post('/', async (req,res) => {
+ router.post('/', async (req, res) => {
     let body = req.body
+    console.log(req.body);
     let id = await blogList.insert(body);
     res.json(id);
 })
