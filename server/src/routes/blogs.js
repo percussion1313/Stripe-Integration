@@ -24,7 +24,7 @@ router.get('/', async(req, res) => {
 
 router.delete('/:id', async (req, res) => {
     let id = req.params.id;
-    let result = await table.delete(id);
+    let result = await blogList.delete(id);
     res.json(result);
 });
 

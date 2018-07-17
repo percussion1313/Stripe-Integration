@@ -9,6 +9,7 @@ import Login from './auth/login';
 import Logout from './auth/logout';
 import AuthButton from './auth/authButton';
 import AddPost from './admin/addpost';
+import EditPost from './admin/edit';
 
 
 class Navigation extends Component {
@@ -29,6 +30,7 @@ class Navigation extends Component {
                         <Route path="/blogs" component={BlogList}/>
                         <PrivateRoute path="/admin" component={AdminBlogList} />
                         <PrivateRoute path="/addpost" component={AddPost} />
+                        <PrivateRoute path="/editpost" component={EditPost} />
                     </Switch>
                 </Fragment>
             </Router>
