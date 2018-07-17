@@ -13,7 +13,7 @@ let Blog = ({ blogData }) => {
                 </div>
             </div>
         </React.Fragment>
-    )
+    ) 
 }
 
 export default Blog

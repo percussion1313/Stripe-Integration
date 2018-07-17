@@ -39,7 +39,7 @@ class SingleBlog extends Component {
             <div>
                 <h5 className=" display-4 card-title col-12 mt-4 ">{this.state.blogs.title}</h5><hr></hr>
                 <div className="card-body">{this.state.blogs.content}</div>
-                <Link to='/admin' ><button className="btn btn-primary float-right" onClick={this.deletePost.bind(this)}>Delete Post</button></Link>
+                <Link to='/admin' ><button className="btn btn-primary float-right">Delete Post</button></Link>
                 <Link to='/editpost' ><button className="btn btn-primary float-left">Edit Post</button></Link>
             </div>
         )

@@ -3,7 +3,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
 import Table from '../table';
 import { encode, decode } from '../utils/tokens';
-import { checkPassword } from '../utils/sec'
+import { checkPassword } from '../utils/security'
 
 let usersTable = new Table('users');
 let tokensTable = new Table('tokens');
