@@ -10,6 +10,7 @@ import Logout from './auth/logout';
 import AuthButton from './auth/authButton';
 import AddPost from './admin/addpost';
 import EditPost from './admin/edit';
+import Donate from './donate'
 
 
 class Navigation extends Component {
@@ -19,6 +20,7 @@ class Navigation extends Component {
             <Router>
                 <Fragment>
                     <AuthButton />
+                    <Link to="/donate"><button className="btn btn-success fixed-top">Where's the money Lebowski?!</button></Link>
                     <Link to="/"><button className="btn btn-outline-dark col-md-3 shadow rounded-0 mt-2">HOME</button></Link>
                     <Link to="/blogs"><button className="btn btn-outline-dark col-md-3 shadow rounded-0 mt-2">Blog Posts</button></Link>
                     <Link to="/admin"><button className="btn btn-outline-dark col-md-3 shadow rounded-0 mt-2">Admin</button></Link>
@@ -28,6 +30,7 @@ class Navigation extends Component {
                         <Route path="/logout" component={Logout} />
                         <PrivateRoute path="/blogs/:id" component={SingleBlog} />
                         <Route path="/blogs" component={BlogList}/>
+                        <Route path="/donate" component={Donate}/>
                         <PrivateRoute path="/admin" component={AdminBlogList} />
                         <PrivateRoute path="/addpost" component={AddPost} />
                         <PrivateRoute path="/editpost" component={EditPost} />
