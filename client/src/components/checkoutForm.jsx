@@ -29,7 +29,7 @@ class CheckoutForm extends Component {
 
     render() {
         return (
-            <form onSubmit={(e) => this.handleSubmit(e)}>
+            <form className ="col-md-6 mx-auto"onSubmit={(e) => this.handleSubmit(e)}>
                 <input onChange={(e) => this.handleNameInput(e)} placeholder="Name" htmlFor="name" id="name" />
                 <CardSection />
                 <button>SUBMIT</button>

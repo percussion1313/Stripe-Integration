@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './home';
+import Donate from './donate'
 import AdminBlogList from './admin/adminhome';
 import SingleBlog from './admin/singleblog';
 import BlogList from './bloglist';
@@ -10,7 +11,7 @@ import Logout from './auth/logout';
 import AuthButton from './auth/authButton';
 import AddPost from './admin/addpost';
 import EditPost from './admin/edit';
-import Donate from './donate'
+
 
 
 class Navigation extends Component {
@@ -20,10 +21,10 @@ class Navigation extends Component {
             <Router>
                 <Fragment>
                     <AuthButton />
-                    <Link to="/donate"><button className="btn btn-success fixed-top">Where's the money Lebowski?!</button></Link>
                     <Link to="/"><button className="btn btn-outline-dark col-md-3 shadow rounded-0 mt-2">HOME</button></Link>
                     <Link to="/blogs"><button className="btn btn-outline-dark col-md-3 shadow rounded-0 mt-2">Blog Posts</button></Link>
                     <Link to="/admin"><button className="btn btn-outline-dark col-md-3 shadow rounded-0 mt-2">Admin</button></Link>
+                    <Link to="/donate"><button className="btn btn-success fixed-bottom">Where's the money Lebowski?!</button></Link>
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route path="/login" component={Login} />
