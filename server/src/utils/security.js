@@ -10,7 +10,4 @@ function checkPassword(password, hash) {
 }
 
 
-export default {
-    generateHash,
-    checkPassword
-}
+export { generateHash, checkPassword }

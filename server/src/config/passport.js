@@ -15,21 +15,18 @@ function configurePassport(app) {
         session: false,
     },  (email, password, done) => {
        usersTable.find({ email })
-       .then((results) => {
-            results[0]
-       })
+       .then((results) => results[0])
        .then((user) => {
            if (user && user.hash) {
                 checkPassword(password, user.hash) 
                 .then((matches) => {
-                    if (matches) {
+                    if (matches === true) {
                         tokensTable.insert({
                             userid: user.id
                         })
                             .then((idObj) => encode(idObj.id))
                             .then((token) => {
                                 return done(null, { token })
-                                .then(console.log('Success!'))
                             });
                     } else {
                         return done(null, false, { message: 'Invalid credentials' });
@@ -45,27 +42,26 @@ function configurePassport(app) {
     })
 }));
 
-    passport.use(new BearerStrategy(async (token, done) => {
-        console.log('bearerstrategy')
-        let tokenId = decode(token);
-        if (!tokenId) {
+passport.use(new BearerStrategy(async (token, done) => {
+    console.log('bearerstrategy')
+    let tokenId = decode(token);
+    if (!tokenId) {
+        return done(null, false, { message: 'Invalid token' });
+    }
+    try {
+        let tokenRecord = await tokensTable.getOne(tokenId);
+        let user = await usersTable.getOne(tokenRecord.userid);
+        if (user) {
+            delete user.password; //removes pw from user object on server
+            return done(null, user);// after this, req.user is SET
+        } else {
             return done(null, false, { message: 'Invalid token' });
         }
-        try {
-            let tokenRecord = await tokensTable.getOne(tokenId);
-            let user = await usersTable.getOne(tokenRecord.userid);
-            if (user) {
-                delete user.password; //removes pw from user object on server
-                return done(null, user);// after this, req.user is SET
-            } else {
-                return done(null, false, { message: 'Invalid token' });
-            }
-        } catch (err) {
-            return done(err);
-        }
-    }));
-
+    } catch (err) {
+        return done(err);
+    }
+}));
     app.use(passport.initialize());
 }
 
-export default configurePassport;
+export default configurePassport; 
