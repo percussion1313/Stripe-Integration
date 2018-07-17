@@ -23,14 +23,7 @@ class AddPost extends Component {
         console.log(blogPost)
         //Using back end functions provided in service/blogs.js
         blogService.insert(blogPost)
-        // fetch('/api/blogs', {
-        //     method: 'POST',
-        //     body: JSON.stringify(blogPost),
-        //     headers: new Headers ({ 
-        //         'Content-Type': 'application/json'
-        //     })
-        // }).then(response => response.json())
-        //     .catch(error => console.log(error))
+          .catch(error => console.log(error))
     }
 
 

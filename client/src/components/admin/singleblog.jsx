@@ -19,15 +19,26 @@ class SingleBlog extends Component {
         blogService.one(this.props.match.params.id)
             .then((res) => this.setState({
                 blogs: res
-
             }))
     }
+
+
+     async deletePost() {
+        try {
+            let id = this.props.match.params.id
+          await blogService.destroy(id)
+        } catch (err) {
+          console.log(err);
+        }
+      };
+  
 
     render() {
         return (
             <div>
                 <h5 className=" display-4 card-title col-12 mt-4 ">{this.state.blogs.title}</h5><hr></hr>
                 <div className="card-body">{this.state.blogs.content}</div>
+                <Link to='/admin' ><button className="btn btn-primary float-right" onClick={this.deletePost.bind(this)}>Delete Post</button></Link>
             </div>
         )
     }

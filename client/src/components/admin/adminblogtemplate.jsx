@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 
+
 let AdminBlog = ({ blogData }) => {
+    
     return (
 
         <React.Fragment>

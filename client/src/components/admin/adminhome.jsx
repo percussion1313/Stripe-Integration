@@ -32,7 +32,7 @@ class AdminBlogList extends Component {
         )
         return (
             <React.Fragment>
-            <Link to="/addpost" ><button className="btn btn-primary d-flex mx-auto">Add Post!</button></Link>
+            <Link to="/addpost" ><button className="btn btn-primary d-flex mx-auto col-md-4 mt-4">Add Post!</button></Link>
                 {blogPosts}
             </React.Fragment>
         )
