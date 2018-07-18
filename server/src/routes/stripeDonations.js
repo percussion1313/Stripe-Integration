@@ -9,10 +9,13 @@ router.post('/', async (req, res) => {
     try {
         let chargeResponse = await charge(tokenId, amount);
         res.json({ message: 'success' });
+        console.log(chargeResponse)
     } catch (err) {
         console.log(err);
+        console.log(chargeResponse)
         res.sendStatus(500);
     }
 });
 
 export default router;
+

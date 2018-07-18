@@ -12,12 +12,13 @@ class CheckoutForm extends Component {
             customerName: ''
         }
     }
-
+  
     async handleSubmit(e) {
         e.preventDefault();
         try {
             let token = await this.props.stripe.createToken({name: this.state.customerName });
-            await postCharge({ id: token.id, amount: 10 });
+            await postCharge({ id: token.token.id, amount: 59 });
+            alert('Thanks for your payment!')
         } catch (e) {
             console.log(e);
         }
